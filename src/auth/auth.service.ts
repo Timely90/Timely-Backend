@@ -76,6 +76,7 @@ export class AuthService {
       token: token,
       name: user.name,
       email: user.email,
+      rol: user.rol
     };
 
   }
@@ -132,6 +133,7 @@ export class AuthService {
       tokens: token,
       name: user.name,
       email: user.email,
+      rol:user.rol,
       message: "Contraseña actualizada correctamente",
     };
   }

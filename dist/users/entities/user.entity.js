@@ -9,44 +9,40 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserBook = void 0;
+exports.UserTimely = void 0;
 const typeorm_1 = require("typeorm");
-let UserBook = class UserBook {
+let UserTimely = class UserTimely {
 };
-exports.UserBook = UserBook;
+exports.UserTimely = UserTimely;
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),
     __metadata("design:type", Number)
-], UserBook.prototype, "id", void 0);
+], UserTimely.prototype, "id", void 0);
 __decorate([
     (0, typeorm_1.Column)({ length: 500 }),
     __metadata("design:type", String)
-], UserBook.prototype, "name", void 0);
+], UserTimely.prototype, "name", void 0);
 __decorate([
     (0, typeorm_1.Column)({ unique: true, nullable: false }),
     __metadata("design:type", String)
-], UserBook.prototype, "email", void 0);
-__decorate([
-    (0, typeorm_1.Column)({ length: 500 }),
-    __metadata("design:type", String)
-], UserBook.prototype, "telefono", void 0);
+], UserTimely.prototype, "email", void 0);
 __decorate([
     (0, typeorm_1.Column)({ nullable: false }),
     __metadata("design:type", String)
-], UserBook.prototype, "password", void 0);
+], UserTimely.prototype, "password", void 0);
 __decorate([
     (0, typeorm_1.Column)({ default: "user" }),
     __metadata("design:type", String)
-], UserBook.prototype, "rol", void 0);
+], UserTimely.prototype, "rol", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", Boolean)
-], UserBook.prototype, "isVerified", void 0);
+], UserTimely.prototype, "isVerified", void 0);
 __decorate([
     (0, typeorm_1.DeleteDateColumn)(),
     __metadata("design:type", Date)
-], UserBook.prototype, "deletedAt", void 0);
-exports.UserBook = UserBook = __decorate([
+], UserTimely.prototype, "deletedAt", void 0);
+exports.UserTimely = UserTimely = __decorate([
     (0, typeorm_1.Entity)()
-], UserBook);
+], UserTimely);
 //# sourceMappingURL=user.entity.js.map

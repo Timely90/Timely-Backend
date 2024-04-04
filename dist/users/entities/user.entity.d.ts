@@ -1,8 +1,7 @@
-export declare class UserBook {
+export declare class UserTimely {
     id: number;
     name: string;
     email: string;
-    telefono: string;
     password: string;
     rol: string;
     isVerified: boolean;

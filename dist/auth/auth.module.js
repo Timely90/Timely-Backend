@@ -15,8 +15,6 @@ const jwt_1 = require("@nestjs/jwt");
 const users_module_1 = require("../users/users.module");
 const jwt_constant_1 = require("./constants/jwt.constant");
 const mailer_config_1 = require("./mailer.config");
-const google_module_1 = require("./google/google.module");
-const google_strategy_1 = require("./google/google.strategy");
 let AuthModule = class AuthModule {
 };
 exports.AuthModule = AuthModule;
@@ -30,10 +28,9 @@ exports.AuthModule = AuthModule = __decorate([
                 secret: jwt_constant_1.jwtConstants.secret,
                 signOptions: { expiresIn: "1d" },
             }),
-            google_module_1.GoogleModule,
         ],
         controllers: [auth_controller_1.AuthController],
-        providers: [auth_service_1.AuthService, google_strategy_1.GoogleStrategy],
+        providers: [auth_service_1.AuthService],
         exports: [mailer_1.MailerModule, auth_service_1.AuthService]
     })
 ], AuthModule);

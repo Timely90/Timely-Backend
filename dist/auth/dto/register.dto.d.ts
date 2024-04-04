@@ -1,7 +1,7 @@
 export declare class RegisterDto {
     name: string;
     email: string;
-    telefono: string;
+    rol: string;
     password: string;
     isVerified: boolean;
 }

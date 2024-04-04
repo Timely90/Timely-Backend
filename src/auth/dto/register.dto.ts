@@ -10,7 +10,7 @@ export class RegisterDto {
   email: string;
 
   @IsString()
-  telefono: string;
+  rol: string;
 
   @IsString()
   @MinLength(6)

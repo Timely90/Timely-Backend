@@ -9,9 +9,9 @@ async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
 
   const options = new DocumentBuilder()
-    .setTitle('StarkBook')
+    .setTitle('Timely')
     .setDescription(
-      'This is the StarkBook documentation for storing the books.',
+      'Este es el backend de timely.',
     )
     .setVersion('1.0')
     .build();

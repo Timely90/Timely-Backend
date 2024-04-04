@@ -27,7 +27,7 @@ export class AuthService {
     return users;
   }
 
-  async register({ password, email, telefono, name, isVerified }: RegisterDto) {
+  async register({ password, email, rol, name, isVerified }: RegisterDto) {
     const user = await this.usersService.findOneByEmail(email);
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/i;
 
@@ -44,7 +44,7 @@ export class AuthService {
     await this.usersService.create({
       name,
       email,
-      telefono,
+      rol,
       password: hashedPassword,
       isVerified
     });
@@ -167,17 +167,12 @@ export class AuthService {
     let filePath: string;
 
     if (correo == "register") {
-      url = `https://starkbook.netlify.app/starkbook-sesion?token=${token}`;
+      url = `https://timely12.netlify.app/timely-sesion?token=${token}`;
       filePath = path.resolve(process.cwd(), 'src/auth/html/plantillaReg.html');
     }
 
-    if (correo == "books") {
-      url = `https://starkbook.netlify.app/?token=${token}`;
-      filePath = path.resolve(process.cwd(), 'src/auth/html/plantillaBook.html');
-    }
-
     if (correo == "verificacion") {
-      url = `https://starkbook.netlify.app/starkbook-passwordupemail?token=${token}`;
+      url = `https://timely12.netlify.app/timely-passwordupemail?token=${token}`;
       filePath = path.resolve(process.cwd(), 'src/auth/html/plantilla.html');
     }
 

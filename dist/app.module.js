@@ -13,8 +13,6 @@ const typeorm_1 = require("@nestjs/typeorm");
 const config_1 = require("@nestjs/config");
 const users_module_1 = require("./users/users.module");
 const auth_module_1 = require("./auth/auth.module");
-const categories_module_1 = require("./categories/categories.module");
-const books_module_1 = require("./books/books.module");
 require('dotenv').config();
 let AppModule = class AppModule {
 };
@@ -36,9 +34,7 @@ exports.AppModule = AppModule = __decorate([
                 },
             }),
             users_module_1.UsersModule,
-            auth_module_1.AuthModule,
-            categories_module_1.CategoriesModule,
-            books_module_1.BooksModule,
+            auth_module_1.AuthModule
         ],
     })
 ], AppModule);

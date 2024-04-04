@@ -8,8 +8,8 @@ const class_validator_1 = require("class-validator");
 async function bootstrap() {
     const app = await core_1.NestFactory.create(app_module_1.AppModule);
     const options = new swagger_1.DocumentBuilder()
-        .setTitle('StarkBook')
-        .setDescription('This is the StarkBook documentation for storing the books.')
+        .setTitle('Timely')
+        .setDescription('Este es el backend de timely.')
         .setVersion('1.0')
         .build();
     const document = swagger_1.SwaggerModule.createDocument(app, options);

@@ -6,8 +6,6 @@ import { JwtModule } from "@nestjs/jwt";
 import { UsersModule } from "src/users/users.module";
 import { jwtConstants } from "./constants/jwt.constant";
 import { mailerConfig } from "./mailer.config";
-import { GoogleModule } from './google/google.module';
-import { GoogleStrategy } from "./google/google.strategy";
 
 @Module({
   imports: [
@@ -18,10 +16,9 @@ import { GoogleStrategy } from "./google/google.strategy";
       secret: jwtConstants.secret,
       signOptions: { expiresIn: "1d" },
     }),
-    GoogleModule,
   ],
   controllers: [AuthController],
-  providers: [AuthService,GoogleStrategy],
+  providers: [AuthService],
   exports: [MailerModule,AuthService]
 })
 export class AuthModule { }

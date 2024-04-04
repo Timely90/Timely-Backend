@@ -104,7 +104,8 @@ export class AuthService {
     return {
       token: token,
       name: user.name,
-      email: user.email
+      email: user.email,
+      rol: user.rol
     };
   }
 

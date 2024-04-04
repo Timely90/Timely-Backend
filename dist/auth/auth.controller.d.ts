@@ -27,5 +27,5 @@ export declare class AuthController {
         name: string;
         email: string;
     }>;
-    findAll(): Promise<import("src/users/entities/user.entity").UserTimely[]>;
+    findAll(): Promise<import("../users/entities/user.entity").UserTimely[]>;
 }

@@ -1,7 +1,7 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseInterceptors, UploadedFiles } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseInterceptors,  UploadedFile } from '@nestjs/common';
 import { SalonService } from './salon.service';
 import { CreateSalonDto } from './dto/create-salon.dto';
-import { FilesInterceptor } from '@nestjs/platform-express';
+import { FileInterceptor } from '@nestjs/platform-express';
 import { ApiTags } from '@nestjs/swagger';
 
 
@@ -24,13 +24,12 @@ export class SalonController {
 
 
   @Post()
-  @UseInterceptors(FilesInterceptor('imagen', 10))
+  @UseInterceptors(FileInterceptor('imagen'))
   createArticle(
-    @UploadedFiles() imagen: Express.Multer.File[],
-    @Body() newArticles: CreateSalonDto,
+    @UploadedFile() imagen: Express.Multer.File,
+    @Body() newSalon: CreateSalonDto,
   ) {
-    console.log(newArticles, imagen, "Datos de salon");
-    // return this.salonService.createSalon({ ...newArticles, imagen });
+    return this.salonService.createSalon({ ...newSalon, imagen });
   }
 
 

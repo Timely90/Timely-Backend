@@ -1,9 +1,9 @@
 
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
-import { Salon } from 'src/salon/entities/salon.entity';
+import { SalonTimely } from 'src/salon/entities/salon.entity';
 
 @Entity()
-export class Archive {
+export class ArchiveTimely {
   @PrimaryGeneratedColumn()
   id: number;
   @Column()
@@ -12,6 +12,6 @@ export class Archive {
   salonId: number;
   @Column({ type: 'datetime', default: () => 'CURRENT_TIMESTAMP' })
   createdDate: Date;
-  @ManyToOne(() => Salon, (salon) => salon.archives)
-  salon: Salon;
+  @ManyToOne(() => SalonTimely, (salon) => salon.archives)
+  salon: SalonTimely;
 }

@@ -1,7 +1,7 @@
-import { Archive } from 'src/archives/entities/archive.entity';
+import { ArchiveTimely } from 'src/archives/entities/archive.entity';
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 @Entity()
-export class Salon {
+export class SalonTimely {
   @PrimaryGeneratedColumn()
   id: number;
   @Column({ unique: true })
@@ -14,6 +14,6 @@ export class Salon {
   ubicacion: number;
   @Column({ type: 'datetime', default: () => 'CURRENT_TIMESTAMP' })
   createdDate: Date;
-  @OneToMany(() => Archive, (archive) => archive.salon)
-  archives: Archive;
+  @OneToMany(() => ArchiveTimely, (archive) => archive.salon)
+  archives: ArchiveTimely;
 }

@@ -1,6 +1,6 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Archive } from './entities/archive.entity';
+import { ArchiveTimely } from './entities/archive.entity';
 import { Repository } from 'typeorm';
 import { CreateArchiveDto } from './dto/create-archive.dto';
 
@@ -8,7 +8,7 @@ import { CreateArchiveDto } from './dto/create-archive.dto';
 @Injectable()
 export class ArchivesService {
   constructor(
-    @InjectRepository(Archive) private archiveRepository: Repository<Archive>,
+    @InjectRepository(ArchiveTimely) private archiveRepository: Repository<ArchiveTimely>,
   ) {}
 
 

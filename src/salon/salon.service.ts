@@ -1,7 +1,7 @@
 
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Salon } from './entities/salon.entity';
+import { SalonTimely } from './entities/salon.entity';
 import { Repository } from 'typeorm';
 import { CloudinaryService } from 'src/cloudinary/cloudinary.service';
 import { ArchivesService } from 'src/archives/archives.service';
@@ -11,10 +11,9 @@ import { CreateSalonDto } from './dto/create-salon.dto';
 @Injectable()
 export class SalonService {
 
-
   constructor(
-    @InjectRepository(Salon)
-    private salonRepository: Repository<Salon>,
+    @InjectRepository(SalonTimely)
+    private salonRepository: Repository<SalonTimely>,
     private cloudinaryService: CloudinaryService,
     private archiveService: ArchivesService,
   ) { }
@@ -27,22 +26,18 @@ export class SalonService {
       },
     });
 
-
     if (salonFound) {
       return new HttpException('El salón ya existe.', HttpStatus.CONFLICT);
     }
-
 
     const uploadResult = await this.cloudinaryService.uploadFile(
       salon.imagen,
     );
 
-
     if (uploadResult) {
       const newSalon = this.salonRepository.create(salon);
       const savedSalon = await this.salonRepository.save(newSalon);
-
-
+      
       const filenames = uploadResult.map((item) => item.secure_url);
       const salonId = savedSalon.id;
 

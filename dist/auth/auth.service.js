@@ -63,6 +63,7 @@ let AuthService = class AuthService {
             token: token,
             name: user.name,
             email: user.email,
+            rol: user.rol
         };
     }
     async login({ email, password }) {
@@ -82,7 +83,8 @@ let AuthService = class AuthService {
         return {
             token: token,
             name: user.name,
-            email: user.email
+            email: user.email,
+            rol: user.rol
         };
     }
     async updatePasswordEmail(email, passDto) {
@@ -101,6 +103,7 @@ let AuthService = class AuthService {
             tokens: token,
             name: user.name,
             email: user.email,
+            rol: user.rol,
             message: "Contraseña actualizada correctamente",
         };
     }

@@ -17,16 +17,19 @@ export declare class AuthService {
         token: string;
         name: string;
         email: string;
+        rol: string;
     }>;
     login({ email, password }: LoginDto): Promise<{
         token: string;
         name: string;
         email: string;
+        rol: string;
     }>;
     updatePasswordEmail(email: string, passDto: PassEmailDto): Promise<{
         tokens: string;
         name: string;
         email: string;
+        rol: string;
         message: string;
     }>;
     registerEmail({ email }: EmailDto): Promise<{

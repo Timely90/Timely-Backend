@@ -12,6 +12,7 @@ export declare class AuthController {
         token: string;
         name: string;
         email: string;
+        rol: string;
     }>;
     emailRegister(email: EmailDto): Promise<{
         message: string;
@@ -20,12 +21,14 @@ export declare class AuthController {
         tokens: string;
         name: string;
         email: string;
+        rol: string;
         message: string;
     }>;
     updateVerification(req: any, isVerified: boolean): Promise<{
         token: string;
         name: string;
         email: string;
+        rol: string;
     }>;
     findAll(): Promise<import("../users/entities/user.entity").UserTimely[]>;
 }

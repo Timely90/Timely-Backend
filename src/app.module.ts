@@ -4,6 +4,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
+import { ArchivesModule } from './archives/archives.module';
+import { SalonModule } from './salon/salon.module';
+import { CloudinaryModule } from './cloudinary/cloudinary.module';
 require('dotenv').config();
 
 @Module({
@@ -22,7 +25,10 @@ require('dotenv').config();
       },
     }),
     UsersModule,
-    AuthModule
+    AuthModule,
+    ArchivesModule,
+    SalonModule,
+    CloudinaryModule
   ],
 })
 export class AppModule {}

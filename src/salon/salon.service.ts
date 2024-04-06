@@ -38,19 +38,19 @@ export class SalonService {
       const newSalon = this.salonRepository.create(salon);
       const savedSalon = await this.salonRepository.save(newSalon);
       
-      const filenames = uploadResult.map((item) => item.secure_url);
+      const filename = uploadResult.secure_url; 
+      
       const salonId = savedSalon.id;
-
-
-      for (const filename of filenames) {
-        const dataArchive = {
-          filename,
-          salonId,
-        };
-        await this.archiveService.createArchive(dataArchive);
-      }
+    
+      const dataArchive = {
+        filename,
+        salonId,
+      };
+      await this.archiveService.createArchive(dataArchive);
+    
       return savedSalon;
     }
+    
   }
 
 

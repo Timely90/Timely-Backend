@@ -139,7 +139,7 @@ let AuthService = class AuthService {
             .replace('{{token}}', url);
         await this.mailerService.sendMail({
             to: email,
-            subject: "Correo de StarkBook",
+            subject: "Correo de ",
             html: personalizedHtml,
         });
     }

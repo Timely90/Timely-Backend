@@ -9,7 +9,7 @@ export declare class AuthService {
     private readonly jwtService;
     private readonly mailerService;
     constructor(usersService: UsersService, jwtService: JwtService, mailerService: MailerService);
-    findAll(): Promise<import("../users/entities/user.entity").UserTimely[]>;
+    findAll(): Promise<import("src/users/entities/user.entity").UserTimely[]>;
     register({ password, email, rol, name, isVerified }: RegisterDto): Promise<{
         message: string;
     }>;

@@ -29,7 +29,7 @@ export class CloudinaryController {
         ],
       }),
     )
-    files: Express.Multer.File[],
+    files: Express.Multer.File,
   ) {
     return this.CloudinaryService.uploadFile(files);
   }

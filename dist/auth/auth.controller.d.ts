@@ -30,5 +30,5 @@ export declare class AuthController {
         email: string;
         rol: string;
     }>;
-    findAll(): Promise<import("../users/entities/user.entity").UserTimely[]>;
+    findAll(): Promise<import("src/users/entities/user.entity").UserTimely[]>;
 }

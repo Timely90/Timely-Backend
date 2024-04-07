@@ -1,6 +1,6 @@
 import { Body, Controller, Get, HttpCode, HttpStatus, Patch, Post } from "@nestjs/common";
 import { LoginDto } from "./dto/login.dto";
-import { RegisterDto } from "./dto/register.dto";
+import { RegisterDto, UpdateUserDto } from "./dto/register.dto";
 import { AuthService } from "./auth.service";
 import { ApiTags } from "@nestjs/swagger";
 import { Request, UseGuards } from "@nestjs/common";
@@ -16,6 +16,12 @@ export class AuthController {
   @Post("register")
   register(@Body() registerDto: RegisterDto) {
     return this.authService.register(registerDto);
+  }
+
+  @Patch("update")
+  async update(@Body() updateUserDto: UpdateUserDto) {
+    const {id, name, email } = updateUserDto;
+    return this.authService.updateEmailUser(id, name, email);
   }
 
   @HttpCode(HttpStatus.OK)
@@ -37,11 +43,11 @@ export class AuthController {
 
   @Patch('tokens-verifi')
   @UseGuards(AuthGuard)
-  updateVerification(@Request() req, @Body() isVerified:boolean) {
+  updateVerification(@Request() req, @Body() isVerified: boolean) {
     return this.authService.updateVerificacion(req.user.email, isVerified);
   }
 
-  @Get("clients")
+  @Get("users")
   findAll() {
     return this.authService.findAll();
   }

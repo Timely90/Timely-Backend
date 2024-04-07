@@ -1,6 +1,7 @@
 import {
   BadRequestException,
   Injectable,
+  NotFoundException,
   UnauthorizedException,
 } from "@nestjs/common";
 import { RegisterDto } from "./dto/register.dto";
@@ -24,8 +25,10 @@ export class AuthService {
 
   async findAll() {
     const users = await this.usersService.findAllUser();
-    return users;
+    const estilistas = users.filter(user => user.rol === 'estilista');
+    return estilistas;
   }
+
 
   async register({ password, email, rol, name, isVerified }: RegisterDto) {
     const user = await this.usersService.findOneByEmail(email);
@@ -49,14 +52,29 @@ export class AuthService {
       isVerified
     });
 
-    const Usuario = { email, name, password }
-    let correo = "register";
-
-    await this.envioEmail(Usuario, email, correo);
+    if (rol === "cliente") {
+      const Usuario = { email, name, password }
+      let correo = "register";
+      await this.envioEmail(Usuario, email, correo);
+    }
 
     return {
       message: "Usuario registrado correctamente.",
     };
+
+  }
+
+  async updateEmailUser(id:number, name:string, email:string) {
+    const user = await this.usersService.findOneById(id);
+
+    if (!user) {
+      throw new UnauthorizedException("Usuario no existe");
+    }
+
+    await this.usersService.updateEmailUser(id, name, email);
+
+    return {message: "Usuario actualizado correctamente"};
+
   }
 
   async updateVerificacion(email: string, isVerified: boolean) {
@@ -133,7 +151,7 @@ export class AuthService {
       tokens: token,
       name: user.name,
       email: user.email,
-      rol:user.rol,
+      rol: user.rol,
       message: "Contraseña actualizada correctamente",
     };
   }

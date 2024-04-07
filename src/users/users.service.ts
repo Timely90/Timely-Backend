@@ -19,6 +19,10 @@ export class UsersService {
     return await this.usersRepository.findOneBy({ email });
   }
 
+  async findOneById(id: number) {
+    return await this.usersRepository.findOneBy({ id });
+  }
+
   async updatePassword(email: string, newPassword: string) {
     const user = await this.findOneByEmail(email);
 
@@ -48,6 +52,10 @@ export class UsersService {
     await this.usersRepository.update({ email }, { isVerified: true });
   }
 
+  async updateEmailUser(id:number, name: string, email: string) {
+    await this.usersRepository.update({id},{email,name});
+  }
+
   async updatePasswordEmail(email: string, password: string) {
     const user = await this.findOneByEmail(email);
 
@@ -59,7 +67,7 @@ export class UsersService {
   }
 
   async findAllUser() {
-    const users = await this. usersRepository.find();
+    const users = await this.usersRepository.find();
     return users;
   }
 

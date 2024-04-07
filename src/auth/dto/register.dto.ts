@@ -1,5 +1,5 @@
 import { Transform } from "class-transformer";
-import { IsBoolean, IsEmail, IsString, MinLength } from "class-validator";
+import { IsBoolean, IsEmail, IsNumber, IsString, MinLength } from "class-validator";
 
 export class RegisterDto {
   @IsString()
@@ -19,5 +19,17 @@ export class RegisterDto {
 
   @IsBoolean()
   isVerified: boolean;
+}
+
+export class UpdateUserDto {
+  @IsNumber()
+  id:number;
+  
+  @IsString()
+  @MinLength(1)
+  name: string;
+
+  @IsEmail()
+  email: string;
 }
 

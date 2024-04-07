@@ -204,7 +204,7 @@ export class AuthService {
 
     await this.mailerService.sendMail({
       to: email,
-      subject: "Correo de StarkBook",
+      subject: "Correo de Timely",
       html: personalizedHtml,
     });
 

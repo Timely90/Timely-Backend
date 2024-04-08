@@ -12,5 +12,5 @@ export class UpdateSalonDto {
     @ApiProperty()
     ubicacion?: number;
     @ApiProperty()
-    imagen?: Express.Multer.File[];
+    imagen?: Express.Multer.File;
 }

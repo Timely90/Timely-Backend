@@ -14,6 +14,7 @@ CREATE TABLE user_timely (
 CREATE TABLE salon_timely(
     id INT NOT NULL AUTO_INCREMENT,
     nombre VARCHAR(500) NOT NULL, 
+    email VARCHAR(500) NOT NULL, 
     descripcion VARCHAR(500) NOT NULL,
     capacidad INT NOT NULL,
     ubicacion VARCHAR(255) NOT NULL, 

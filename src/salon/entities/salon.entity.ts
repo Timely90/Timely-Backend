@@ -7,6 +7,8 @@ export class SalonTimely {
   @Column({ unique: true })
   nombre: string;
   @Column()
+  email: string;
+  @Column()
   descripcion: string;
   @Column()
   capacidad: number;

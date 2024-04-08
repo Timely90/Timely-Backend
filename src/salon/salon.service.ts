@@ -6,6 +6,7 @@ import { Repository } from 'typeorm';
 import { CloudinaryService } from 'src/cloudinary/cloudinary.service';
 import { ArchivesService } from 'src/archives/archives.service';
 import { CreateSalonDto } from './dto/create-salon.dto';
+import { UpdateSalonDto } from './dto/update-salon.dto';
 
 
 @Injectable()
@@ -37,29 +38,27 @@ export class SalonService {
     if (uploadResult) {
       const newSalon = this.salonRepository.create(salon);
       const savedSalon = await this.salonRepository.save(newSalon);
-      
-      const filename = uploadResult.secure_url; 
-      
+
+      const filename = uploadResult.secure_url;
+
       const salonId = savedSalon.id;
-    
+
       const dataArchive = {
         filename,
         salonId,
       };
       await this.archiveService.createArchive(dataArchive);
-    
+
       return savedSalon;
     }
-    
+
   }
 
-
-  // getArticles() {
-  //   return this.articlesRepository.find({
-  //     relations: ['archives'],
-  //   });
-  // }
-
+  getSalon() {
+    return this.salonRepository.find({
+      relations: ['archives'],
+    });
+  }
 
   // async getArticle(id: number) {
   //   const artiFound = await this.articlesRepository.findOne({
@@ -77,65 +76,43 @@ export class SalonService {
   //   return artiFound;
   // }
 
+  async deleteArticle(id: number) {
+    const result = await this.salonRepository.delete({ id });
+    await this.archiveService.deleteArchiveSalon(id);
+    if (result.affected === 0) {
+      return new HttpException('Salón no encontrado.', HttpStatus.NOT_FOUND);
+    }
+    return result;
+  }
 
-  // async deleteArticle(id: number) {
-  //   const result = await this.articlesRepository.delete({ id });
-  //   await this.archiveService.deleteArchiveArticles(id);
-  //   if (result.affected === 0) {
-  //     return new HttpException('ArtÃ­culo no encontrado.', HttpStatus.NOT_FOUND);
-  //   }
+  async updateSalones(id: number, salon: UpdateSalonDto, imagen: Express.Multer.File,
+  ) {
+    const salonFound = await this.salonRepository.findOne({
+      where: { id, },
+    });
 
+    if (!salonFound) {
+      return new HttpException('Salón no encontrado.', HttpStatus.NOT_FOUND);
+    }
 
-  //   return result;
-  // }
+    const uploadResult = await this.cloudinaryService.uploadFile(imagen);
 
+    if (uploadResult) {
+      const updateSalon = Object.assign(salonFound, salon);
+      const dataSalon = this.salonRepository.save(updateSalon);
 
-  // async updateArticles(
-  //   id: number,
-  //   articles: UpdateArticlesDto,
-  //   imagen: Express.Multer.File[],
-  // ) {
-  //   const articlesFound = await this.articlesRepository.findOne({
-  //     where: {
-  //       id,
-  //     },
-  //   });
+      const filenames = uploadResult.secure_url;
+      const salonId = id;
 
+      const dataArchive = {
+        filenames,
+        salonId,
+      };
+      await this.archiveService.updateArchiveSalones(salonId, dataArchive);
 
-  //   if (!articlesFound) {
-  //     return new HttpException('ArtÃ­culo no encontrado.', HttpStatus.NOT_FOUND);
-  //   }
-
-
-  //   const uploadResult = await this.cloudinaryService.uploadFile(imagen);
-
-
-  //   if (uploadResult) {
-  //     const updateArticles = Object.assign(articlesFound, articles);
-  //     const dataArticles = this.articlesRepository.save(updateArticles);
-
-
-  //     const filenames = uploadResult.map((item) => item.secure_url);
-  //     const serviceId = 0;
-  //     const articleId = id;
-  //     const offerId = 0;
-
-
-  //     for (const filename of filenames) {
-  //       const dataArchive = {
-  //         filename,
-  //         serviceId,
-  //         articleId,
-  //         offerId,
-  //       };
-
-
-  //       await this.archiveService.updateArchiveArticles(articleId, dataArchive);
-  //     }
-  //     return dataArticles;
-  //   }
-  // }
-
+      return dataSalon;
+    }
+  }
 
   // async articlesCode(cantidad: number, code: string) {
   //   const article = await this.articlesRepository.findOne({

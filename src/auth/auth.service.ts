@@ -23,12 +23,16 @@ export class AuthService {
     private readonly mailerService: MailerService
   ) { }
 
-  async findAll() {
+  async findAllEmail() {
     const users = await this.usersService.findAllUser();
     const estilistas = users.filter(user => user.rol === 'estilista');
     return estilistas;
   }
 
+  async findByAdministrador(email: string) {
+    const users = await this.usersService.findOneByEmail(email);
+    return users;
+  }
 
   async register({ password, email, rol, name, isVerified }: RegisterDto) {
     const user = await this.usersService.findOneByEmail(email);
@@ -64,7 +68,7 @@ export class AuthService {
 
   }
 
-  async updateEmailUser(id:number, name:string, email:string) {
+  async updateEmailUser(id: number, name: string, email: string) {
     const user = await this.usersService.findOneById(id);
 
     if (!user) {
@@ -73,7 +77,7 @@ export class AuthService {
 
     await this.usersService.updateEmailUser(id, name, email);
 
-    return {message: "Usuario actualizado correctamente"};
+    return { message: "Usuario actualizado correctamente" };
 
   }
 
@@ -133,10 +137,6 @@ export class AuthService {
 
     if (!user) {
       throw new UnauthorizedException("Usuario no encontrado");
-    }
-
-    if (passDto.password !== passDto.verPassword) {
-      throw new UnauthorizedException("Las contraseñas no coinciden");
     }
 
     const hashedNewPassword = await bcryptjs.hash(passDto.password, 10);

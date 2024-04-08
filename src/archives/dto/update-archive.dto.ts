@@ -3,7 +3,7 @@ import { ApiProperty } from "@nestjs/swagger";
 
 export class UpdateArchiveDto {
     @ApiProperty()
-    filename: string;
+    filenames: string;
     @ApiProperty()
     salonId: number;
 }

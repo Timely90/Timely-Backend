@@ -1,11 +1,14 @@
 import { LoginDto } from "./dto/login.dto";
-import { RegisterDto } from "./dto/register.dto";
+import { RegisterDto, UpdateUserDto } from "./dto/register.dto";
 import { AuthService } from "./auth.service";
 import { EmailDto, PassEmailDto } from "./dto/pass.dto";
 export declare class AuthController {
     private readonly authService;
     constructor(authService: AuthService);
     register(registerDto: RegisterDto): Promise<{
+        message: string;
+    }>;
+    update(updateUserDto: UpdateUserDto): Promise<{
         message: string;
     }>;
     login(loginDto: LoginDto): Promise<{
@@ -31,4 +34,5 @@ export declare class AuthController {
         rol: string;
     }>;
     findAll(): Promise<import("../users/entities/user.entity").UserTimely[]>;
+    findByEmail(email: string): Promise<import("../users/entities/user.entity").UserTimely>;
 }

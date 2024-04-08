@@ -5,3 +5,8 @@ export declare class RegisterDto {
     password: string;
     isVerified: boolean;
 }
+export declare class UpdateUserDto {
+    id: number;
+    name: string;
+    email: string;
+}

@@ -23,8 +23,13 @@ let AuthService = class AuthService {
         this.jwtService = jwtService;
         this.mailerService = mailerService;
     }
-    async findAll() {
+    async findAllEmail() {
         const users = await this.usersService.findAllUser();
+        const estilistas = users.filter(user => user.rol === 'estilista');
+        return estilistas;
+    }
+    async findByAdministrador(email) {
+        const users = await this.usersService.findOneByEmail(email);
         return users;
     }
     async register({ password, email, rol, name, isVerified }) {
@@ -44,12 +49,22 @@ let AuthService = class AuthService {
             password: hashedPassword,
             isVerified
         });
-        const Usuario = { email, name, password };
-        let correo = "register";
-        await this.envioEmail(Usuario, email, correo);
+        if (rol === "cliente") {
+            const Usuario = { email, name, password };
+            let correo = "register";
+            await this.envioEmail(Usuario, email, correo);
+        }
         return {
             message: "Usuario registrado correctamente.",
         };
+    }
+    async updateEmailUser(id, name, email) {
+        const user = await this.usersService.findOneById(id);
+        if (!user) {
+            throw new common_1.UnauthorizedException("Usuario no existe");
+        }
+        await this.usersService.updateEmailUser(id, name, email);
+        return { message: "Usuario actualizado correctamente" };
     }
     async updateVerificacion(email, isVerified) {
         const user = await this.usersService.findOneByEmail(email);
@@ -91,9 +106,6 @@ let AuthService = class AuthService {
         const user = await this.usersService.findOneByEmail(email);
         if (!user) {
             throw new common_1.UnauthorizedException("Usuario no encontrado");
-        }
-        if (passDto.password !== passDto.verPassword) {
-            throw new common_1.UnauthorizedException("Las contraseñas no coinciden");
         }
         const hashedNewPassword = await bcryptjs.hash(passDto.password, 10);
         await this.usersService.updatePasswordEmail(email, hashedNewPassword);

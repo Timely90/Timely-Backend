@@ -9,8 +9,12 @@ export declare class AuthService {
     private readonly jwtService;
     private readonly mailerService;
     constructor(usersService: UsersService, jwtService: JwtService, mailerService: MailerService);
-    findAll(): Promise<import("../users/entities/user.entity").UserTimely[]>;
+    findAllEmail(): Promise<import("../users/entities/user.entity").UserTimely[]>;
+    findByAdministrador(email: string): Promise<import("../users/entities/user.entity").UserTimely>;
     register({ password, email, rol, name, isVerified }: RegisterDto): Promise<{
+        message: string;
+    }>;
+    updateEmailUser(id: number, name: string, email: string): Promise<{
         message: string;
     }>;
     updateVerificacion(email: string, isVerified: boolean): Promise<{

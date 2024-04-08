@@ -6,11 +6,13 @@ export declare class UsersService {
     constructor(usersRepository: Repository<UserTimely>);
     create(createUserDto: CreateUserDto): Promise<CreateUserDto & UserTimely>;
     findOneByEmail(email: string): Promise<UserTimely>;
+    findOneById(id: number): Promise<UserTimely>;
     updatePassword(email: string, newPassword: string): Promise<void>;
     findAllEmails(): Promise<{
         emailes: string[];
     }>;
     updateVerifi(email: string, isVerified: boolean): Promise<void>;
+    updateEmailUser(id: number, name: string, email: string): Promise<void>;
     updatePasswordEmail(email: string, password: string): Promise<void>;
     findAllUser(): Promise<UserTimely[]>;
 }

@@ -27,6 +27,9 @@ let UsersService = class UsersService {
     async findOneByEmail(email) {
         return await this.usersRepository.findOneBy({ email });
     }
+    async findOneById(id) {
+        return await this.usersRepository.findOneBy({ id });
+    }
     async updatePassword(email, newPassword) {
         const user = await this.findOneByEmail(email);
         if (!user) {
@@ -48,6 +51,9 @@ let UsersService = class UsersService {
             throw new common_1.NotFoundException("Usuario no encontrado");
         }
         await this.usersRepository.update({ email }, { isVerified: true });
+    }
+    async updateEmailUser(id, name, email) {
+        await this.usersRepository.update({ id }, { email, name });
     }
     async updatePasswordEmail(email, password) {
         const user = await this.findOneByEmail(email);

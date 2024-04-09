@@ -32,7 +32,7 @@ export class SalonController {
     @UploadedFile() imagen: Express.Multer.File,
     @Body() salon: UpdateSalonDto,
   ) {
-    return this.salonService.updateSalones(id, salon, imagen);
+    return this.salonService.updateSalones( id, salon, imagen);
   }
 
   @Delete(':id')

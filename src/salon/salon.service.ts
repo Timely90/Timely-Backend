@@ -40,7 +40,6 @@ export class SalonService {
       const savedSalon = await this.salonRepository.save(newSalon);
 
       const filename = uploadResult.secure_url;
-
       const salonId = savedSalon.id;
 
       const dataArchive = {
@@ -87,31 +86,32 @@ export class SalonService {
 
   async updateSalones(id: number, salon: UpdateSalonDto, imagen: Express.Multer.File,
   ) {
-    const salonFound = await this.salonRepository.findOne({
-      where: { id, },
-    });
+    console.log(id, salon, imagen);
+    // const salonFound = await this.salonRepository.findOne({
+    //   where: { id },
+    // });
 
-    if (!salonFound) {
-      return new HttpException('Salón no encontrado.', HttpStatus.NOT_FOUND);
-    }
+    // if (!salonFound) {
+    //   return new HttpException('Salón no encontrado.', HttpStatus.NOT_FOUND);
+    // }
 
-    const uploadResult = await this.cloudinaryService.uploadFile(imagen);
+    // const uploadResult = await this.cloudinaryService.uploadFile(imagen);
 
-    if (uploadResult) {
-      const updateSalon = Object.assign(salonFound, salon);
-      const dataSalon = this.salonRepository.save(updateSalon);
+    // if (uploadResult) {
+    //   const updateSalon = Object.assign(salonFound, salon);
+    //   const dataSalon = this.salonRepository.save(updateSalon);
 
-      const filenames = uploadResult.secure_url;
-      const salonId = id;
+    //   const filenames = uploadResult.secure_url;
+    //   const salonId = id;
 
-      const dataArchive = {
-        filenames,
-        salonId,
-      };
-      await this.archiveService.updateArchiveSalones(salonId, dataArchive);
+    //   const dataArchive = {
+    //     filenames,
+    //     salonId,
+    //   };
+    //   await this.archiveService.updateArchiveSalones(salonId, dataArchive);
 
-      return dataSalon;
-    }
+    //   return dataSalon;
+    // }
   }
 
   // async articlesCode(cantidad: number, code: string) {

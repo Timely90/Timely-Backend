@@ -9,7 +9,7 @@ import { UpdateArchiveDto } from './dto/update-archive.dto';
 export class ArchivesService {
   constructor(
     @InjectRepository(ArchiveTimely) private archiveRepository: Repository<ArchiveTimely>,
-  ) {}
+  ) { }
 
   getArticles() {
     return this.archiveRepository.find({});
@@ -41,7 +41,7 @@ export class ArchivesService {
   // }
 
   async deleteArchiveSalon(salonId: number) {
-    const result = await this.archiveRepository.delete({salonId});
+    const result = await this.archiveRepository.delete({ salonId });
 
     if (result.affected === 0) {
       return new HttpException('Archivo no encontrado.', HttpStatus.NOT_FOUND);

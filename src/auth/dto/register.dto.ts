@@ -23,13 +23,16 @@ export class RegisterDto {
 
 export class UpdateUserDto {
   @IsNumber()
-  id:number;
+  id?:number;
   
   @IsString()
   @MinLength(1)
-  name: string;
+  name?: string;
 
   @IsEmail()
-  email: string;
+  email?: string;
+
+  @IsString()
+  rol?: string;
 }
 

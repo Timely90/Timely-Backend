@@ -31,3 +31,4 @@ CREATE TABLE archive_timely (
     PRIMARY KEY (id),
     KEY salonId_id_idx (salonId)
 );
+

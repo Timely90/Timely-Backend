@@ -74,14 +74,14 @@ export class AuthService {
 
   }
 
-  async updateEmailUser(id: number, name: string, email: string) {
+  async updateEmailUser(id: number, name: string, email: string, rol:string) {
     const user = await this.usersService.findOneById(id);
 
     if (!user) {
       throw new UnauthorizedException("Usuario no existe");
     }
 
-    await this.usersService.updateEmailUser(id, name, email);
+    await this.usersService.updateEmailUser(id, name, email, rol);
 
     return { message: "Usuario actualizado correctamente" };
 

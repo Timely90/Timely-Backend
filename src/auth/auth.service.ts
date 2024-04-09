@@ -31,7 +31,7 @@ export class AuthService {
 
   async findAllEmailEmpleado() {
     const users = await this.usersService.findAllUser();
-    const empleados = users.filter(user => user.rol === 'secretario' || user.rol === 'cajero');
+    const empleados = users.filter(user => user.rol === 'secretario');
     return empleados;
   }
 
@@ -74,14 +74,14 @@ export class AuthService {
 
   }
 
-  async updateEmailUser(id: number, name: string, email: string, rol:string) {
+  async updateEmailUser(id: number, name: string, email: string) {
     const user = await this.usersService.findOneById(id);
 
     if (!user) {
       throw new UnauthorizedException("Usuario no existe");
     }
 
-    await this.usersService.updateEmailUser(id, name, email, rol);
+    await this.usersService.updateEmailUser(id, name, email);
 
     return { message: "Usuario actualizado correctamente" };
 

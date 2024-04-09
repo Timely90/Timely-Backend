@@ -27,8 +27,20 @@ CREATE TABLE archive_timely (
     id INT NOT NULL AUTO_INCREMENT,
     filename VARCHAR(255) NOT NULL,
     salonId INT,
+    servicioId INT,
     createdDate TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
     PRIMARY KEY (id),
-    KEY salonId_id_idx (salonId)
+    KEY salonId_id_idx (salonId),
+    KEY servicioId_id_idx (servicioId)
 );
 
+CREATE TABLE servicio_timely(
+    id INT NOT NULL AUTO_INCREMENT,
+    nombre VARCHAR(500) NOT NULL, 
+    descripcion VARCHAR(500) NOT NULL,
+    salon VARCHAR (500) NOT NULL,
+    horario VARCHAR(255) NOT NULL, 
+    createdDate TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
+    PRIMARY KEY (id),
+    UNIQUE KEY nombre (nombre)
+);

@@ -23,10 +23,16 @@ export class AuthService {
     private readonly mailerService: MailerService
   ) { }
 
-  async findAllEmail() {
+  async findAllEmailEstilista() {
     const users = await this.usersService.findAllUser();
     const estilistas = users.filter(user => user.rol === 'estilista');
     return estilistas;
+  }
+
+  async findAllEmailEmpleado() {
+    const users = await this.usersService.findAllUser();
+    const empleados = users.filter(user => user.rol === 'secretario' || user.rol === 'cajero');
+    return empleados;
   }
 
   async findByAdministrador(email: string) {

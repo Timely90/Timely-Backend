@@ -12,7 +12,7 @@ export class SalonController {
   constructor(private salonService: SalonService) { }
 
   @Get()
-  getArticles(): Promise<SalonTimely[]> {
+  getSalon(): Promise<SalonTimely[]> {
     return this.salonService.getSalon();
   }
 

@@ -4,4 +4,6 @@ export class CreateArchiveDto {
   filename: string;
   @ApiProperty()
   salonId: number;
+  @ApiProperty()
+  servicioId: number;
 }

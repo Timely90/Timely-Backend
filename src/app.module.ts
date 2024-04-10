@@ -7,6 +7,7 @@ import { AuthModule } from './auth/auth.module';
 import { ArchivesModule } from './archives/archives.module';
 import { SalonModule } from './salon/salon.module';
 import { CloudinaryModule } from './cloudinary/cloudinary.module';
+import { ServiciosModule } from './servicios/servicios.module';
 require('dotenv').config();
 
 @Module({
@@ -28,7 +29,8 @@ require('dotenv').config();
     AuthModule,
     ArchivesModule,
     SalonModule,
-    CloudinaryModule
+    CloudinaryModule,
+    ServiciosModule,
   ],
 })
 export class AppModule {}

@@ -6,4 +6,6 @@ export class UpdateArchiveDto {
     filenames?: string;
     @ApiProperty()
     salonId?: number;
+    @ApiProperty()
+    servicioId?: number;
 }

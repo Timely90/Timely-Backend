@@ -41,10 +41,12 @@ export class SalonService {
 
       const filename = uploadResult.secure_url;
       const salonId = savedSalon.id;
+      const servicioId = 0;
 
       const dataArchive = {
         filename,
         salonId,
+        servicioId,
       };
       await this.archiveService.createArchive(dataArchive);
 

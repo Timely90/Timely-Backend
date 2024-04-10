@@ -12,6 +12,8 @@ export class ServicioTimely {
     descripcion: string;
     @Column()
     horario: string;
+    @Column()
+    precio: number;
     @Column({ type: 'datetime', default: () => 'CURRENT_TIMESTAMP' })
     createdDate: Date;
     @OneToMany(() => ArchiveTimely, (archive) => archive.servicio)

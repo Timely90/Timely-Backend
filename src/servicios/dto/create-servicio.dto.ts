@@ -10,5 +10,7 @@ export class CreateServicioDto {
     @ApiProperty()
     horario: string;
     @ApiProperty()
+    precio: number;
+    @ApiProperty()
     imagen: Express.Multer.File;
 }

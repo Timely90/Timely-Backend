@@ -39,7 +39,8 @@ CREATE TABLE servicio_timely(
     nombre VARCHAR(500) NOT NULL, 
     salon VARCHAR (500) NOT NULL,
     descripcion VARCHAR(500) NOT NULL,
-    horario VARCHAR(255) NOT NULL, 
+    horario VARCHAR(255) NOT NULL,
+    precio INT, 
     createdDate TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
     PRIMARY KEY (id),
     UNIQUE KEY nombre (nombre)

@@ -44,8 +44,11 @@ let AuthController = class AuthController {
     updateVerification(req, isVerified) {
         return this.authService.updateVerificacion(req.user.email, isVerified);
     }
-    findAll() {
-        return this.authService.findAllEmail();
+    findAllEstilista() {
+        return this.authService.findAllEmailEstilista();
+    }
+    findAllEmpleado() {
+        return this.authService.findAllEmailEmpleado();
     }
     async findByEmail(email) {
         return this.authService.findByAdministrador(email);
@@ -100,11 +103,17 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], AuthController.prototype, "updateVerification", null);
 __decorate([
-    (0, common_1.Get)("users"),
+    (0, common_1.Get)("estilista"),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
-], AuthController.prototype, "findAll", null);
+], AuthController.prototype, "findAllEstilista", null);
+__decorate([
+    (0, common_1.Get)("empleado"),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], AuthController.prototype, "findAllEmpleado", null);
 __decorate([
     (0, common_1.Get)('admin:email'),
     __param(0, (0, common_1.Param)('email')),

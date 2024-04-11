@@ -16,6 +16,9 @@ const auth_module_1 = require("./auth/auth.module");
 const archives_module_1 = require("./archives/archives.module");
 const salon_module_1 = require("./salon/salon.module");
 const cloudinary_module_1 = require("./cloudinary/cloudinary.module");
+const servicios_module_1 = require("./servicios/servicios.module");
+const paypal_module_1 = require("./paypal/paypal.module");
+const reservados_module_1 = require("./reservados/reservados.module");
 require('dotenv').config();
 let AppModule = class AppModule {
 };
@@ -33,14 +36,17 @@ exports.AppModule = AppModule = __decorate([
                 entities: [(0, path_1.join)(__dirname + '/**/*.entity{.ts,.js}')],
                 synchronize: false,
                 ssl: {
-                    rejectUnauthorized: true,
+                    rejectUnauthorized: false,
                 },
             }),
             users_module_1.UsersModule,
             auth_module_1.AuthModule,
             archives_module_1.ArchivesModule,
             salon_module_1.SalonModule,
-            cloudinary_module_1.CloudinaryModule
+            cloudinary_module_1.CloudinaryModule,
+            servicios_module_1.ServiciosModule,
+            paypal_module_1.PaypalModule,
+            reservados_module_1.ReservadosModule,
         ],
     })
 ], AppModule);

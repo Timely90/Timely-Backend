@@ -45,3 +45,16 @@ CREATE TABLE servicio_timely(
     PRIMARY KEY (id),
     UNIQUE KEY nombre (nombre)
 );
+
+CREATE TABLE reservado_timely(
+    id INT NOT NULL AUTO_INCREMENT,
+    nombre VARCHAR(500) NOT NULL, 
+    salon VARCHAR (500) NOT NULL,
+    descripcion VARCHAR(500) NOT NULL,
+    horario VARCHAR(255) NOT NULL,
+    precio INT, 
+    email VARCHAR(500) NOT NULL,
+    createdDate TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
+    PRIMARY KEY (id),
+    UNIQUE KEY nombre (nombre)
+);

@@ -6,7 +6,7 @@ export declare class RegisterDto {
     isVerified: boolean;
 }
 export declare class UpdateUserDto {
-    id: number;
-    name: string;
-    email: string;
+    id?: number;
+    name?: string;
+    email?: string;
 }

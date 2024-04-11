@@ -33,6 +33,7 @@ export declare class AuthController {
         email: string;
         rol: string;
     }>;
-    findAll(): Promise<import("../users/entities/user.entity").UserTimely[]>;
-    findByEmail(email: string): Promise<import("../users/entities/user.entity").UserTimely>;
+    findAllEstilista(): Promise<import("src/users/entities/user.entity").UserTimely[]>;
+    findAllEmpleado(): Promise<import("src/users/entities/user.entity").UserTimely[]>;
+    findByEmail(email: string): Promise<import("src/users/entities/user.entity").UserTimely>;
 }

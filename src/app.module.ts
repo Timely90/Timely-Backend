@@ -8,6 +8,8 @@ import { ArchivesModule } from './archives/archives.module';
 import { SalonModule } from './salon/salon.module';
 import { CloudinaryModule } from './cloudinary/cloudinary.module';
 import { ServiciosModule } from './servicios/servicios.module';
+import { PaypalModule } from './paypal/paypal.module';
+import { ReservadosModule } from './reservados/reservados.module';
 require('dotenv').config();
 
 @Module({
@@ -22,7 +24,7 @@ require('dotenv').config();
       entities: [join(__dirname + '/**/*.entity{.ts,.js}')],
       synchronize: false,
       ssl: {
-        rejectUnauthorized: true,
+        rejectUnauthorized: false,
       },
     }),
     UsersModule,
@@ -31,6 +33,8 @@ require('dotenv').config();
     SalonModule,
     CloudinaryModule,
     ServiciosModule,
+    PaypalModule,
+    ReservadosModule,
   ],
 })
 export class AppModule {}

@@ -23,10 +23,15 @@ let AuthService = class AuthService {
         this.jwtService = jwtService;
         this.mailerService = mailerService;
     }
-    async findAllEmail() {
+    async findAllEmailEstilista() {
         const users = await this.usersService.findAllUser();
         const estilistas = users.filter(user => user.rol === 'estilista');
         return estilistas;
+    }
+    async findAllEmailEmpleado() {
+        const users = await this.usersService.findAllUser();
+        const empleados = users.filter(user => user.rol === 'secretario');
+        return empleados;
     }
     async findByAdministrador(email) {
         const users = await this.usersService.findOneByEmail(email);

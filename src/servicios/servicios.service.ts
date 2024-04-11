@@ -58,6 +58,11 @@ export class ServiciosService {
     });
   }
 
+  async getServicioId(id: number) {
+    const result = await this.servicioRepository.findOne({ where: {id}});
+    return result;
+  }
+
   async deleteServicio(id: number) {
     const result = await this.servicioRepository.delete({ id });
     await this.archiveService.deleteArchiveServicio(id);

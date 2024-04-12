@@ -106,8 +106,8 @@ export class PaypalService {
         descripcion: servicios.descripcion,
         horario: servicios.horario,
         precio: servicios.precio,
-        email: email,
         filename: archiveServicios.filename,
+        email: email,
       };
 
       await this.reservadoService.createReservados(datos);

@@ -12,5 +12,7 @@ export class CreateReservadoDto {
     @ApiProperty()
     precio: number;
     @ApiProperty()
+    filename: string;
+    @ApiProperty()
     email: string;
 }

@@ -15,6 +15,8 @@ export class ReservadoTimely {
     @Column()
     precio: number;
     @Column()
+    filename: string;
+    @Column()
     email: string;
     @Column({ type: 'datetime', default: () => 'CURRENT_TIMESTAMP' })
     createdDate: Date;

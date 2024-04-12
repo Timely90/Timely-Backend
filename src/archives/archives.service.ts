@@ -40,6 +40,15 @@ export class ArchivesService {
     return result;
   }
 
+  async getArchiveServiceId(servicioId: number) {
+    const serFound = await this.archiveRepository.findOne({
+      where: {
+        servicioId,
+      },
+    });
+    return serFound;
+  }
+
   async updateArchiveSalones(salonId: number, salon: UpdateArchiveDto) {
     const salFound = await this.archiveRepository.findOne({
       where: {

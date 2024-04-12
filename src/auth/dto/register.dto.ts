@@ -10,6 +10,9 @@ export class RegisterDto {
   email: string;
 
   @IsString()
+  salon?: string;
+
+  @IsString()
   rol: string;
 
   @IsString()
@@ -31,5 +34,8 @@ export class UpdateUserDto {
 
   @IsEmail()
   email?: string;
+
+  @IsEmail()
+  salon?: string;
 }
 

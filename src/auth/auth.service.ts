@@ -40,7 +40,8 @@ export class AuthService {
     return users;
   }
 
-  async register({ password, email, rol, name, isVerified }: RegisterDto) {
+  async register({ password, email, rol, salon, name, isVerified }: RegisterDto) {
+    console.log(password, email, rol, salon, name, isVerified);
     const user = await this.usersService.findOneByEmail(email);
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/i;
 
@@ -58,6 +59,7 @@ export class AuthService {
       name,
       email,
       rol,
+      salon,
       password: hashedPassword,
       isVerified
     });
@@ -74,14 +76,14 @@ export class AuthService {
 
   }
 
-  async updateEmailUser(id: number, name: string, email: string) {
+  async updateEmailUser(id: number, name: string, email: string, salon:string) {
     const user = await this.usersService.findOneById(id);
 
     if (!user) {
       throw new UnauthorizedException("Usuario no existe");
     }
 
-    await this.usersService.updateEmailUser(id, name, email);
+    await this.usersService.updateEmailUser(id, name, email, salon);
 
     return { message: "Usuario actualizado correctamente" };
 
@@ -134,7 +136,8 @@ export class AuthService {
       token: token,
       name: user.name,
       email: user.email,
-      rol: user.rol
+      rol: user.rol,
+      salon:user.salon
     };
   }
 

@@ -10,6 +10,8 @@ export class UserTimely {
   email: string;
   @Column({ nullable: false })
   password: string;
+  @Column({ length: 500 })
+  salon: string;
   @Column({ default: "user" })
   rol: string;
   @Column()

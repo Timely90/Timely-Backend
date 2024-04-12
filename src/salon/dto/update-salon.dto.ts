@@ -4,8 +4,6 @@ export class UpdateSalonDto {
     @ApiProperty()
     nombre?: string;
     @ApiProperty()
-    email?: string;
-    @ApiProperty()
     descripcion?: string;
     @ApiProperty()
     capacidad?: number;

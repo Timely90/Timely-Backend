@@ -52,8 +52,8 @@ export class UsersService {
     await this.usersRepository.update({ email }, { isVerified: true });
   }
 
-  async updateEmailUser(id:number, name: string, email: string) {
-    await this.usersRepository.update({id},{email,name});
+  async updateEmailUser(id:number, name: string, email: string, salon:string) {
+    await this.usersRepository.update({id},{email,name, salon});
   }
 
   async updatePasswordEmail(email: string, password: string) {

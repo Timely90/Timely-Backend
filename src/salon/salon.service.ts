@@ -61,22 +61,6 @@ export class SalonService {
     });
   }
 
-  // async getArticle(id: number) {
-  //   const artiFound = await this.articlesRepository.findOne({
-  //     where: {
-  //       id,
-  //     },
-  //   });
-
-
-  //   if (!artiFound) {
-  //     return new HttpException('ArtÃ­culo no encontrado.', HttpStatus.NOT_FOUND);
-  //   }
-
-
-  //   return artiFound;
-  // }
-
   async deleteArticle(id: number) {
     const result = await this.salonRepository.delete({ id });
     await this.archiveService.deleteArchiveSalon(id);
@@ -116,14 +100,6 @@ export class SalonService {
       return dataSalon;
     }
   }
-
-  // async articlesCode(cantidad: number, code: string) {
-  //   const article = await this.articlesRepository.findOne({
-  //     where: { code: code }
-  //   });
-  //   article.quantity -= cantidad;
-  //   await this.articlesRepository.save(article);
-  // }
 }
 
 

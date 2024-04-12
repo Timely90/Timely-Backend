@@ -20,8 +20,8 @@ export class AuthController {
 
   @Patch("update")
   async update(@Body() updateUserDto: UpdateUserDto) {
-    const {id, name, email} = updateUserDto;
-    return this.authService.updateEmailUser(id, name, email);
+    const {id, name, email, salon} = updateUserDto;
+    return this.authService.updateEmailUser(id, name, email, salon);
   }
 
   @HttpCode(HttpStatus.OK)

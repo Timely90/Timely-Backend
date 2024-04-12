@@ -5,6 +5,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { ServiciosService } from 'src/servicios/servicios.service';
 import { ReservadosService } from 'src/reservados/reservados.service';
+import { ArchivesService } from 'src/archives/archives.service';
 
 @Injectable()
 export class PaypalService {
@@ -13,7 +14,8 @@ export class PaypalService {
     @InjectRepository(Paypal)
     private readonly paypalRepository: Repository<Paypal>,
     private servicioService: ServiciosService,
-    private reservadoService: ReservadosService
+    private reservadoService: ReservadosService,
+    private archiveService: ArchivesService
   ) { }
 
   async createPayment(id: number, precio: number, email: string) {
@@ -96,6 +98,7 @@ export class PaypalService {
         }
       );
       const servicios = await this.servicioService.getServicioId(id);
+      const archiveServicios = await this.archiveService.getArchiveServiceId(id);
 
       const datos = {
         nombre: servicios.nombre,
@@ -103,7 +106,8 @@ export class PaypalService {
         descripcion: servicios.descripcion,
         horario: servicios.horario,
         precio: servicios.precio,
-        email: email
+        email: email,
+        filename: archiveServicios.filename,
       };
 
       await this.reservadoService.createReservados(datos);

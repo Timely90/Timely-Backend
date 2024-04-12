@@ -1,7 +1,9 @@
 import { Controller, Get, Param, Delete, ParseIntPipe } from '@nestjs/common';
 import { ReservadosService } from './reservados.service';
 import { ReservadoTimely } from './entities/reservado.entity';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags("Reservados")
 @Controller('reservados')
 export class ReservadosController {
   constructor(private readonly reservadosService: ReservadosService) { }
